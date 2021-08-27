@@ -1,10 +1,18 @@
-## Language Performance Comparison of the same Task (numerical solution of a differential equation) : 
-Only in the case of Python and Julia we are sure that the code is suiifiently well written to call it a fair comparison. 
-The Jupyter notebooks for the other languaes have essentially been hacked togehter on one evening. 
-Therefore, there is probally a lot of room for improvements (especially in the case of C++). 
-Feel free to open an issue, if you know how to improve one of the implementations. But nevertheless here is the current ranking: 
+## Language Performance Comparison of the same task (numerical solution of a differential equation) :
+Only in the case of Python and Julia we are sure that the code is sufficiently well written to call it a fair comparison.
+The Jupyter notebooks for the other languages have essentially been hacked together on one evening.
+Therefore, there is probably a lot of room for improvements (especially in the case of C++).
+Feel free to open an issue, if you know how to improve one of the implementations. But nevertheless, here is the current ranking: 
 
 
 | Language          | Time (µs) |       
 | ------------------| ----------| 
-| Rust              | Time (µs) |       
+| Rust              |    0.373  |       
+| Python with Numba |    4.430  |  
+| Julia             |    6.474  | 
+| C++               |    58.92  |  
+| Perl              |    334.0  |  
+| R                 |    478.0  |  
+| Python            |   1600.0  |  
+
+CPU: Ryzen 5 PRO 4650U, 16GB DDR4 3200 
