@@ -4,8 +4,7 @@ The Jupyter notebooks for the other languaes have essentially been hacked togeht
 Therefore, there is probally a lot of room for improvements (especially in the case of C++). 
 Feel free to open an issue, if you know how to improve one of the implementations. But nevertheless here is the current ranking: 
 
-1. Rust: 
-2. Python 
-| Name    | Date       | Time  | Topic                                       |
-| ------- | ---------- | ----- | ------------------------------------------- |
-| Andreas | 2021-03-30 | 15:00 | Julia vs Python                             |
+
+| Language          | Time (µs) |       
+| ------------------| ----------| 
+| Rust              | Time (µs) |       
