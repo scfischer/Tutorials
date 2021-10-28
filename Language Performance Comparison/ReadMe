@@ -7,9 +7,10 @@ Feel free to open an issue, if you know how to improve one of the implementation
 
 | Language          | Time (µs) |       
 | ------------------| ----------| 
-| Rust              |    0.373  |       
+| Julia_optimized   |    2.111  |
+| Rust              |    3.730  |       
 | Python with Numba |    4.430  |  
-| Julia             |    6.474  | 
+| Julia_naive       |    6.474  | 
 | C++               |    58.92  |  
 | Perl              |    334.0  |  
 | R                 |    478.0  |  
