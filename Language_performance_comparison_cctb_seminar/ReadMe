@@ -1,0 +1,7 @@
+## Language Performance Comparison of the same task (numerical solution of a differential equation) together with slides and notes from our seminar :
+Only in the case of Python,Julia,R and C++ we are sure that the code is sufficiently well written to call it a fair comparison.
+The Jupyter notebooks for the other languages have essentially been hacked together on one evening.
+Therefore, there is probably a lot of room for improvements.
+Feel free to open an issue, if you know how to improve one of the implementations. 
+
+Andreas Kuhn & Markus Ankenbrand
