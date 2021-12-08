@@ -1,0 +1,11 @@
+tool,runtime
+python,714
+julia,6.349
+R,510.4
+perl,235
+c++,37.97
+c++ (o),23.74
+c++ (c),2.205
+fortran (c),2.242
+rust,5.241
+julia (o),1.986
