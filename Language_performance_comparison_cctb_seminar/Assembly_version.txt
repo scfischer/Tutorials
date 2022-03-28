@@ -1,0 +1,72 @@
+; ---------------------------------------------------
+; Iterate the logistic ODE. For x86_64 linux
+; nasm -felf64 ldgl.nasm && gcc ldgl.o && ./a.out
+; ---------------------------------------------------
+
+      global    main
+      extern printf
+
+      section   .text
+
+main:
+mov rdi, format
+; mov rsi, steps
+
+; let's calculate the time span
+movsd xmm15, [rel tf] ; xmm2 = tf
+subsd xmm15, [rel t0] ; xmm2 -= t0
+; let's calculate dt
+mov rax, steps ; rax = steps
+cvtsi2sd xmm1, rax ; xmm1 = float(steps)
+divsd xmm15, xmm1 ; xmm2 /= steps = (tf-t0)/steps; xmm15 seems to be safe
+
+      mov rdx, loopcnt 
+
+loop:
+
+; set up loop with the formula
+mov rcx, steps ; rcx = steps
+movsd xmm7, [rel u0] ; xmm7 = u0. Assumption: printf preserves xmm7...
+ldgl:
+
+; push rcx ; protect rcx from printf
+; push rdx
+; mov rdi, format ; rdi = format
+
+      movsd xmm6, xmm7      ; xmm6 = xmm7
+      movsd xmm5, xmm7      ; xmm5 = xmm7
+      mulsd xmm6, xmm6      ; xmm6 = u^2
+      subsd xmm5, xmm6      ; xmm5 = u-u^2
+      movsd xmm0, xmm7      ; xmm0 = xmm7 (previous loop value)
+   mulsd xmm5, xmm15   ; xmm5 = dt(u-u^2)
+   addsd xmm0, xmm5    ; u(n+1) = u(n) +  dt(u(n)-u(n)^2)
+
+; vfmadd231sd xmm0, xmm5, xmm15 ; xmm0 = xmm0 + xmm5*xmm15 intel vs AT&T Syntsx
+; movsd xmm7, xmm0 ; xmm7 = xmm0=u(n+1)
+; mov rax, 1 ; 1 floating point argument for printf
+; sub rsp, 8
+; call printf wrt ..plt ; call printf. special syntax required since by default we have PIC code nowadays
+
+; add rsp, 8
+; pop rdx
+; pop rcx
+dec rcx
+jnz ldgl
+
+      dec rdx
+      jnz loop
+
+; termination: proper exit syscall
+mov rax, 60 ; system call for exit
+xor rdi, rdi ; exit code 0
+syscall ; invoke operating system to exit
+
+      section   .data
+
+u0: dq 1E-05 ; the starting value
+t0: dq 0.0 ; starting time
+tf: dq 2.5E01 ; final time
+steps equ 1000 ; macro constant
+loopcnt equ 1000000
+
+format: db "%10g", 10, 0
